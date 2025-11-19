@@ -1,38 +1,37 @@
 package ca.qc.bdeb.a13.vue;
 
-import ca.qc.bdeb.a13.modele.Horloge;
+import ca.qc.bdeb.a13.modele.Observateur;
+import javax.swing.*;
+import java.awt.*;
 
-import java.awt.BorderLayout;
-import java.awt.Font;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
-public class Fenetre extends JFrame {
+public class Fenetre extends JFrame implements Observateur {
 
     private JLabel label = new JLabel();
-    private Horloge horloge;
 
     public Fenetre() {
+        super("Horloge");
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setSize(200, 80);
 
-        this.horloge = new Horloge();
-
         Font police = new Font("DS-digital", Font.TYPE1_FONT, 30);
-        this.label.setFont(police);
-        this.label.setHorizontalAlignment(JLabel.CENTER);
+        label.setFont(police);
+        label.setHorizontalAlignment(JLabel.CENTER);
 
-        this.label.setText("----");
-        this.getContentPane().add(this.label, BorderLayout.CENTER);
+        label.setText("----");   // Valeur affichée au démarrage
+        this.getContentPane().add(label, BorderLayout.CENTER);
+    }
+
+    @Override
+    public void update(String hour) {
+        // Affiche l'heure reçue de l'horloge
+        label.setText(hour);
     }
 
     public static void main(String[] args) {
         Fenetre fen = new Fenetre();
-        Horloge h = new Horloge();
         fen.setVisible(true);
     }
 }
-
