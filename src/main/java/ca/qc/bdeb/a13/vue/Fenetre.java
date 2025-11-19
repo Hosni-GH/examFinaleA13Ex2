@@ -38,8 +38,4 @@ public class Fenetre extends JFrame implements Observateur {
         label.setText(hour);
     }
 
-    public static void main(String[] args) {
-        Fenetre fen = new Fenetre();
-        fen.setVisible(true);
-    }
 }
